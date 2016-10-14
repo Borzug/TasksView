@@ -1,0 +1,28 @@
+table {
+    table-layout: fixed !important;
+    min-width: 1191px;                
+}
+
+/*tbody {
+    position: relative;
+    display: inline-block;      
+    min-width: 100vw;
+    max-height: 80vh;
+    overflow: auto;
+    table-layout: fixed;
+}
+
+thead {    
+    position: relative;
+}*/
+
+.progress-bar {
+    text-shadow: -1px -1px 0 grey, 1px -1px 0 grey, -1px 1px 0 grey, 1px 1px 0 grey;       
+}
+
+.progress {
+    margin-bottom: 0 !important;
+}
+.navbar {
+    min-width: 955px;
+}
