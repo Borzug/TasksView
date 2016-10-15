@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {Modal} from 'react-bootstrap';
 import EditTaskForm from './EditTaskForm';
 import TaskService from '../TaskService';
@@ -16,7 +16,7 @@ class TaskEditModal extends React.Component {
         return (
             <div style={{display: "inline-block", paddingRight: "2px"}}>
 
-                <button className="btn btn-primary btn-xs" onClick={this.open}><span className="glyphicon glyphicon-pencil"></span> Изменить</button>
+                <button className="btn btn-primary btn-xs" onClick={this.open}><span className="glyphicon glyphicon-pencil"/> Изменить</button>
                                 
                 <Modal show={this.state.showEditor} onHide={this.close} animation={false}>                
                     <Modal.Header closeButton>
@@ -24,12 +24,24 @@ class TaskEditModal extends React.Component {
                     </Modal.Header>
 
                     <Modal.Body>
-                        <EditTaskForm onSubmit={this.editTask} onClose={this.close} value={[this.props.value[0], this.props.value[1], this.props.value[2]]} />                        
+                        <EditTaskForm
+                            onSubmit={this.editTask}
+                            onClose={this.close}                            
+                            name={this.props.name}
+                            typeId={this.props.typeId}
+                            id={this.props.id}
+                         />                        
                     </Modal.Body>                                                          
                 </Modal>
             </div>            
         );
     }
 }
+
+TaskEditModal.propTypes = {
+    name: PropTypes.string.isRequired,
+    typeId: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired
+};
 
 export default TaskEditModal;

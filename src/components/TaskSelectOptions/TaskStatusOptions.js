@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {statusCodeConverter} from '../../dictionary';
 import Option from './Option';
 
@@ -11,7 +11,7 @@ class TaskStatusOptions extends React.Component {
         this.props.filterTasks(status);       
     }
     render() {    
-        let optionNodes = Object.keys(statusCodeConverter).map((key) => {        
+        let optionNodes = Object.keys(statusCodeConverter).map((key) => {
             return (
                 <Option
                     id={key} 
@@ -28,5 +28,9 @@ class TaskStatusOptions extends React.Component {
         );
     }
 }
+
+TaskStatusOptions.propTypes = {
+    filterTasks: PropTypes.func.isRequired
+};
 
 export default TaskStatusOptions;

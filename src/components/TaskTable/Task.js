@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {ProgressBar} from 'react-bootstrap';
 import TaskService from '../TaskService';
 import TaskEditModal from '../TaskEditor/TaskEditModal';
@@ -10,6 +10,9 @@ class Task extends React.Component {
         this.state = {taskId: []};
         this.handleDelete = this.handleDelete.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
+    }
+    shouldComponentUpdate(nextProps) {
+        return nextProps !== this.props;
     }
     handleDelete(id) {                     
         this.props.onDelete(id);
@@ -30,22 +33,18 @@ class Task extends React.Component {
                 <td>{this.props.endDate}</td>                
                 <td>
                     <div>                        
-                        <TaskEditModal 
-                            value={[
-                                this.props.name, 
-                                this.props.typeId, 
-                                this.props.id
-                            ]}                            
+                        <TaskEditModal                            
+                            name={this.props.name}
+                            typeId={this.props.typeId}
+                            id={this.props.id}                           
                             editTask={this.handleEdit} 
                         />
-                        <TaskDeleteModal 
-                            value={[
-                                this.props.id, 
-                                this.props.name, 
-                                this.props.typeName, 
-                                this.props.statusCode, 
-                                this.props.creationDate
-                            ]} 
+                        <TaskDeleteModal                            
+                            id={this.props.id}
+                            name={this.props.name}
+                            typeName={this.props.typeName}
+                            statusCode={this.props.statusCode}
+                            creationDate={this.props.creationDate} 
                             handleDelete={this.handleDelete} 
                         />
                     </div>
@@ -54,5 +53,19 @@ class Task extends React.Component {
         );
     }
 }
+
+Task.propTypes = {
+    onDelete: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
+    name: PropTypes.string.isRequired,
+    typeName: PropTypes.string.isRequired,
+    statusCode: PropTypes.string.isRequired,
+    progressStatus: PropTypes.string.isRequired,
+    progress: PropTypes.number.isRequired,
+    creationDate: PropTypes.string.isRequired,
+    endDate: PropTypes.string.isRequired,
+    typeId: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired
+};
 
 export default Task;

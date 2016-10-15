@@ -18,6 +18,7 @@ class TaskTable extends React.Component {
         this.createTaskFailed = TaskService.createTaskFailed.bind(this);
         this.deleteTask = TaskService.deleteTask.bind(this);
         this.deleteTaskCompleted = TaskService.deleteTaskCompleted.bind(this);
+        this.deleteTaskFailed = TaskService.deleteTaskFailed.bind(this);
         this.editTask = TaskService.editTask.bind(this);
         this.editTaskCompleted = TaskService.editTaskCompleted.bind(this);        
         this.createFilter = TaskService.createFilter.bind(this);        
@@ -25,7 +26,7 @@ class TaskTable extends React.Component {
     }    
     componentDidMount() {        
         this.getTasks();        
-    }    
+    }      
     render() {        
         return (            
             <div className="container-fluid">
@@ -33,9 +34,9 @@ class TaskTable extends React.Component {
                     <nav className="navbar navbar-default navbar-fixed-top" role="navigation">                        
                             <div className="navbar-header">
                                 <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">                                    
-                                    <span className="icon-bar"></span>
-                                    <span className="icon-bar"></span>
-                                    <span className="icon-bar"></span>
+                                    <span className="icon-bar"/>
+                                    <span className="icon-bar"/>
+                                    <span className="icon-bar"/>
                                 </button>                                
                                 <a className="navbar-brand" href="#"><span className="glyphicon glyphicon-th-large" /> Менеджер задач <span className="badge">{this.state.tasks.length}</span>
                                 </a>
@@ -81,7 +82,7 @@ class TaskTable extends React.Component {
                                 <th><input id="to"  type="date" className="form-control input-sm" onInput={this.createFilter}/></th>                                
                                 <th>
                                     <button className="btn btn-primary btn-sm" onClick={this.clearFilter} style={{width: "157px"}}>
-                                        <span className="glyphicon glyphicon-remove"></span> Очистить фильтры
+                                        <span className="glyphicon glyphicon-remove"/> Очистить фильтры
                                     </button>
                                 </th>
                             </tr>

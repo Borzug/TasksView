@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {Col, Form, FormGroup, FormControl, ControlLabel, HelpBlock} from 'react-bootstrap';
 import TaskEditModal from './TaskEditModal';
 import TaskService from '../TaskService';
@@ -14,8 +14,8 @@ class EditTaskForm extends React.Component {
         this.handleSubmit = FormService.handleSubmit.bind(this);
         this.close = FormService.close.bind(this);
     }
-    componentDidMount (props) {
-        this.setState({name: this.props.value[0], typeId: this.props.value[1], id: this.props.value[2]});
+    componentWillMount (props) {
+        this.setState({name: this.props.name, typeId: this.props.typeId, id: this.props.id});
     }    
     render() {
         return (
@@ -49,5 +49,11 @@ class EditTaskForm extends React.Component {
         );
     }
 }
+
+EditTaskForm.propTypes = {
+    name: PropTypes.string.isRequired,
+    typeId: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired
+};
 
 export default EditTaskForm;

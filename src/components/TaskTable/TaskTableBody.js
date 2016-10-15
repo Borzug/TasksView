@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Task from './Task';
 
 class TaskTableBody extends React.Component {
@@ -39,5 +39,11 @@ class TaskTableBody extends React.Component {
         );  
     }
 }
+
+TaskTableBody.propTypes = {
+    deleteTask: PropTypes.func.isRequired,
+    editTask: PropTypes.func.isRequired,
+    tasks: PropTypes.array.isRequired    
+};
 
 export default TaskTableBody;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Select from './Select';
 import $ from 'jquery';
 import toastr from 'toastr';
@@ -36,5 +36,9 @@ class TaskTypeOptions extends React.Component {
         );
     }        
 }
+
+TaskTypeOptions.propTypes = {
+    filterTasks: PropTypes.func.isRequired
+};
 
 export default TaskTypeOptions;

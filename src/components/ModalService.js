@@ -12,7 +12,7 @@ const ModalService = {
         this.props.createTask(task);
     },
     editTask(task) {
-        this.close() 
+        this.close();
         this.props.editTask(task);        
     }
 };

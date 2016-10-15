@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Option from './Option';
 import TaskService from '../TaskService';
 
@@ -28,5 +28,10 @@ class Select extends React.Component {
         );
     }
 }
+
+Select.propTypes = {
+    filterTypes: PropTypes.func.isRequired,
+    types: PropTypes.array.isRequired
+};
 
 export default Select;

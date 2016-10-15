@@ -31,19 +31,23 @@ const TaskService = {
         });                                    
         this.setState({tasks: tasks});             
     },    
-    deleteTask(id) {        
-        $.ajax({
-            url: "http://localhost:8080/api/tasks/"+id,
-            type: 'DELETE'            
-        }).done(this.deleteTaskCompleted)
-          .fail(this.deleteTaskFailed);
+    deleteTask(id) {
+        if (id) {        
+            $.ajax({
+                url: "http://localhost:8080/api/tasks/"+id,
+                type: 'DELETE'            
+            }).done(this.deleteTaskCompleted)
+            .fail(this.deleteTaskFailed);
+        } else {
+            this.deleteTaskFailed();
+        }
     },
     deleteTaskCompleted() {        
         this.getTasks();
         toastr.success("", "Задача удалена!", {"closeButton": true, "positionClass": "toast-bottom-right"});     
     },
     deleteTaskFailed() {
-        toastr.error("", "Не удалось удалить задачу!", {"closeButton": true, "positionClass": "toast-bottom-right"});
+        toastr.error("Попробуйте позже.", "Не удалось удалить задачу!", {"closeButton": true, "positionClass": "toast-bottom-right"});
     },
     createTask(task) {
         $.ajax({
